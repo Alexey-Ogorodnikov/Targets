@@ -1,3 +1,45 @@
 <resources>
-    <string name="app_name">Targets2</string>
+    <string name="app_name">Targets!</string>
+    
+    <!-- Database -->
+    <string name="database_name">targets_database</string>
+    <string name="table_targets">targets</string>
+    
+    <!-- Task Manager Screen -->
+    <string name="target_manager_title">Targets Manager</string>
+    <string name="toggle_completed_targets">Toggle completed targets</string>
+    <string name="add_target">Add target</string>
+    <string name="delete_target">Delete target</string>
+    
+    <!-- Task Priorities -->
+    <string name="priority_low">Low</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_high">High</string>
+    
+    <!-- Empty States -->
+    <string name="no_completed_targets">No completed targets</string>
+    <string name="no_targets_yet">No targets yet</string>
+    <string name="complete_targets_to_see_here">Complete some targets to see them here</string>
+    <string name="add_first_target_to_get_started">Add your first target to get started</string>
+    
+    <!-- Error States -->
+    <string name="error_title">Error</string>
+    <string name="unknown_error_occurred">Unknown error occurred</string>
+    <string name="failed_to_add_target">Failed to add target</string>
+    <string name="failed_to_update_target">Failed to update target</string>
+    <string name="failed_to_delete_target">Failed to delete target</string>
+    <string name="retry">Retry</string>
+    <string name="dismiss">Dismiss</string>
+    
+    <!-- Add Task Dialog -->
+    <string name="add_new_target">Add New Target</string>
+    <string name="target_title">Title</string>
+    <string name="title_required">Title is required</string>
+    <string name="target_description_optional">Description (Optional)</string>
+    <string name="target_priority">Priority</string>
+    <string name="add_target_button">Add Target</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- Navigation -->
+    <string name="target_list_route">target_list</string>
 </resources>
