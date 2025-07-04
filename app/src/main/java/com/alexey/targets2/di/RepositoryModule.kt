@@ -1,7 +1,7 @@
 package com.alexey.targets2.di
 
-import com.alexey.targets2.data.repository.TaskRepository
 import com.alexey.targets2.data.repository.TaskRepositoryImpl
+import com.alexey.targets2.domain.repository.TaskRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

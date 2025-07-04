@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.alexey.targets2.R
-import com.alexey.targets2.data.model.Priority
+import com.alexey.targets2.domain.model.Priority
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -1,6 +1,6 @@
 package com.alexey.targets2.data.repository
 
-import com.alexey.targets2.data.model.Task
+import com.alexey.targets2.domain.model.Task
 import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {

@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alexey.targets2.R
-import com.alexey.targets2.data.model.Priority
-import com.alexey.targets2.data.model.Task
+import com.alexey.targets2.domain.model.Priority
+import com.alexey.targets2.domain.model.Task
 import com.alexey.targets2.presentation.component.AddTaskDialog
 import com.alexey.targets2.presentation.viewmodel.TaskViewModel
 import java.text.SimpleDateFormat

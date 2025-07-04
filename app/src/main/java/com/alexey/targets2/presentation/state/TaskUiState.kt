@@ -1,6 +1,6 @@
 package com.alexey.targets2.presentation.state
 
-import com.alexey.targets2.data.model.Task
+import com.alexey.targets2.domain.model.Task
 
 sealed class TaskUiState {
     object Loading : TaskUiState()

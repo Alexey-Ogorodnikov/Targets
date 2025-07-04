@@ -6,10 +6,10 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import android.content.Context
 import com.alexey.targets2.R
-import com.alexey.targets2.data.model.Task
+import com.alexey.targets2.data.model.TaskEntity
 
 @Database(
-    entities = [Task::class],
+    entities = [TaskEntity::class],
     version = 1,
     exportSchema = false
 )

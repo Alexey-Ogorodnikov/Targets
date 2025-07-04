@@ -1,7 +1,7 @@
 package com.alexey.targets2.data.local
 
 import androidx.room.TypeConverter
-import com.alexey.targets2.data.model.Priority
+import com.alexey.targets2.domain.model.Priority
 
 class Converters {
     

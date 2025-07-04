@@ -1,32 +1,32 @@
 package com.alexey.targets2.data.local
 
 import androidx.room.*
-import com.alexey.targets2.data.model.Task
+import com.alexey.targets2.data.model.TaskEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
     
     @Query("SELECT * FROM tasks ORDER BY createdAt DESC")
-    fun getAllTasks(): Flow<List<Task>>
+    fun getAllTasks(): Flow<List<TaskEntity>>
     
     @Query("SELECT * FROM tasks WHERE isCompleted = 0 ORDER BY createdAt DESC")
-    fun getActiveTasks(): Flow<List<Task>>
+    fun getActiveTasks(): Flow<List<TaskEntity>>
     
     @Query("SELECT * FROM tasks WHERE isCompleted = 1 ORDER BY createdAt DESC")
-    fun getCompletedTasks(): Flow<List<Task>>
+    fun getCompletedTasks(): Flow<List<TaskEntity>>
     
     @Query("SELECT * FROM tasks WHERE id = :taskId")
-    suspend fun getTaskById(taskId: Long): Task?
+    suspend fun getTaskById(taskId: Long): TaskEntity?
     
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTask(task: Task): Long
+    suspend fun insertTask(task: TaskEntity): Long
     
     @Update
-    suspend fun updateTask(task: Task)
+    suspend fun updateTask(task: TaskEntity)
     
     @Delete
-    suspend fun deleteTask(task: Task)
+    suspend fun deleteTask(task: TaskEntity)
     
     @Query("DELETE FROM tasks WHERE isCompleted = 1")
     suspend fun deleteCompletedTasks()

@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alexey.targets2.R
-import com.alexey.targets2.data.model.Task
+import com.alexey.targets2.domain.model.Task
 import com.alexey.targets2.domain.usecase.*
 import com.alexey.targets2.presentation.state.TaskListState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,7 +34,7 @@ class TaskViewModel @Inject constructor(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true, error = null) }
             
-            getAllTasksUseCase()
+            getAllTasksUseCase(GetAllTasksParams(_state.value.showCompletedTasks))
                 .catch { exception ->
                     _state.update { 
                         it.copy(
@@ -44,15 +44,9 @@ class TaskViewModel @Inject constructor(
                     }
                 }
                 .collect { tasks ->
-                    val filteredTasks = if (_state.value.showCompletedTasks) {
-                        tasks
-                    } else {
-                        tasks.filter { !it.isCompleted }
-                    }
-                    
                     _state.update { 
                         it.copy(
-                            tasks = filteredTasks,
+                            tasks = tasks,
                             isLoading = false
                         )
                     }
@@ -60,17 +54,13 @@ class TaskViewModel @Inject constructor(
         }
     }
 
-    fun addTask(title: String, description: String, priority: com.alexey.targets2.data.model.Priority) {
+    fun addTask(title: String, description: String, priority: com.alexey.targets2.domain.model.Priority) {
         if (title.isBlank()) return
         
         viewModelScope.launch {
             try {
-                val task = Task(
-                    title = title.trim(),
-                    description = description.trim(),
-                    priority = priority
-                )
-                addTaskUseCase(task)
+                val params = AddTaskParams(title, description, priority)
+                addTaskUseCase(params)
             } catch (e: Exception) {
                 _state.update { 
                     it.copy(error = e.message ?: context.getString(R.string.failed_to_add_target))
@@ -82,7 +72,8 @@ class TaskViewModel @Inject constructor(
     fun toggleTaskCompletion(task: Task) {
         viewModelScope.launch {
             try {
-                toggleTaskCompletionUseCase(task.id, !task.isCompleted)
+                val params = ToggleTaskCompletionParams(task.id, !task.isCompleted)
+                toggleTaskCompletionUseCase(params)
             } catch (e: Exception) {
                 _state.update { 
                     it.copy(error = e.message ?: context.getString(R.string.failed_to_update_target))
