@@ -11,9 +11,9 @@ import com.alexey.targets2.domain.model.Priority
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddTaskDialog(
+fun AddTargetDialog(
     onDismiss: () -> Unit,
-    onTaskAdded: (title: String, description: String, priority: Priority) -> Unit
+    onTargetAdded: (title: String, description: String, priority: Priority) -> Unit
 ) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
@@ -94,7 +94,7 @@ fun AddTaskDialog(
                         isTitleError = true
                         return@Button
                     }
-                    onTaskAdded(title.trim(), description.trim(), priority)
+                    onTargetAdded(title.trim(), description.trim(), priority)
                 }
             ) {
                 Text(stringResource(R.string.add_target_button))

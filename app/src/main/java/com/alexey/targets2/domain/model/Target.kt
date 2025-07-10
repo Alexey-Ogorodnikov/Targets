@@ -4,7 +4,7 @@ package com.alexey.targets2.domain.model
  * SOLID PRINCIPLES APPLIED:
  * 
  * 1. SINGLE RESPONSIBILITY PRINCIPLE (SRP):
- *    - This class has only one responsibility: representing a Task in the domain layer
+ *    - This class has only one responsibility: representing a Target in the domain layer
  *    - Contains only business logic and data, no framework-specific annotations
  *    - Separated from data layer concerns (no Room annotations)
  * 
@@ -13,21 +13,22 @@ package com.alexey.targets2.domain.model
  *    - Higher-level modules (use cases, repositories) depend on this abstraction
  *    - Data layer adapts to this domain model, not vice versa
  */
-data class Task(
+data class Target(
     val id: Long = 0,
     val title: String,
     val description: String,
     val isCompleted: Boolean = false,
     val priority: Priority = Priority.MEDIUM,
     val createdAt: Long = System.currentTimeMillis(),
-    val dueDate: Long? = null
+    val dueDate: Long? = null,
+    val order: Int = 0
 )
 
 /**
  * SOLID PRINCIPLES APPLIED:
  * 
  * 1. SINGLE RESPONSIBILITY PRINCIPLE (SRP):
- *    - Enum has single responsibility: defining task priority levels
+ *    - Enum has single responsibility: defining Target priority levels
  *    - No business logic, just data representation
  * 
  * 2. OPEN/CLOSED PRINCIPLE (OCP):

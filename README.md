@@ -20,7 +20,7 @@ This project follows all **SOLID principles** with comprehensive documentation i
 ### **3. Liskov Substitution Principle (LSP)**
 - **Repository Implementation**: Can be substituted for interface
 - **Use Case Hierarchy**: UnitUseCase can substitute for UseCase
-- **Interface Composition**: TaskRepository combines TaskReader + TaskWriter
+- **Interface Composition**: TargetRepository combines TargetReader + TaskWriter
 
 ### **4. Interface Segregation Principle (ISP)**
 - **TaskReader/TaskWriter**: Separate interfaces for read/write operations

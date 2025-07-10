@@ -3,13 +3,13 @@ package com.alexey.targets2.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.alexey.targets2.domain.model.Priority
-import com.alexey.targets2.domain.model.Task
+import com.alexey.targets2.domain.model.Target
 
 /**
  * SOLID PRINCIPLES APPLIED:
  * 
  * 1. SINGLE RESPONSIBILITY PRINCIPLE (SRP):
- *    - This class has only one responsibility: representing a Task in the data layer
+ *    - This class has only one responsibility: representing a Target in the data layer
  *    - Contains only database-specific annotations and mapping logic
  *    - Separated from domain business logic
  * 
@@ -22,8 +22,8 @@ import com.alexey.targets2.domain.model.Task
  *    - Mapping functions can be extended without modifying existing code
  *    - New conversion methods can be added without changing the core entity
  */
-@Entity(tableName = "tasks")
-data class TaskEntity(
+@Entity(tableName = "targets")
+data class TargetEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val title: String,
@@ -31,20 +31,22 @@ data class TaskEntity(
     val isCompleted: Boolean = false,
     val priority: Priority = Priority.MEDIUM,
     val createdAt: Long = System.currentTimeMillis(),
-    val dueDate: Long? = null
+    val dueDate: Long? = null,
+    val order: Int = 0
 ) {
     /**
      * Maps data entity to domain model
      * Follows SRP: Single responsibility of data transformation
      */
-    fun toDomain(): Task = Task(
+    fun toDomain(): Target = Target(
         id = id,
         title = title,
         description = description,
         isCompleted = isCompleted,
         priority = priority,
         createdAt = createdAt,
-        dueDate = dueDate
+        dueDate = dueDate,
+        order = order
     )
     
     companion object {
@@ -52,14 +54,15 @@ data class TaskEntity(
          * Maps domain model to data entity
          * Follows SRP: Single responsibility of data transformation
          */
-        fun fromDomain(task: Task): TaskEntity = TaskEntity(
-            id = task.id,
-            title = task.title,
-            description = task.description,
-            isCompleted = task.isCompleted,
-            priority = task.priority,
-            createdAt = task.createdAt,
-            dueDate = task.dueDate
+        fun fromDomain(target: Target): TargetEntity = TargetEntity(
+            id = target.id,
+            title = target.title,
+            description = target.description,
+            isCompleted = target.isCompleted,
+            priority = target.priority,
+            createdAt = target.createdAt,
+            dueDate = target.dueDate,
+            order = target.order
         )
     }
 } 

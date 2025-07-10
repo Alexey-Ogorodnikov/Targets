@@ -2,7 +2,7 @@ package com.alexey.targets2.di
 
 import android.content.Context
 import com.alexey.targets2.data.local.AppDatabase
-import com.alexey.targets2.data.local.TaskDao
+import com.alexey.targets2.data.local.TargetDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +21,7 @@ object DatabaseModule {
     }
 
     @Provides
-    fun provideTaskDao(database: AppDatabase): TaskDao {
-        return database.taskDao()
+    fun provideTargetDao(database: AppDatabase): TargetDao {
+        return database.targetDao()
     }
 } 

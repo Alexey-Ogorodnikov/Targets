@@ -6,8 +6,8 @@ sealed class Result<out T> {
     object Loading : Result<Nothing>()
 }
 
-sealed class TaskResult<out T> : Result<T>() {
-    data class TaskSuccess<T>(val data: T) : TaskResult<T>()
-    data class TaskError(val message: String) : TaskResult<Nothing>()
-    object TaskLoading : TaskResult<Nothing>()
+sealed class TargetResult<out T> : Result<T>() {
+    data class TargetSuccess<T>(val data: T) : TargetResult<T>()
+    data class TargetError(val message: String) : TargetResult<Nothing>()
+    object TargetLoading : TargetResult<Nothing>()
 } 

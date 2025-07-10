@@ -1,7 +1,7 @@
 package com.alexey.targets2.domain.usecase
 
-import com.alexey.targets2.domain.model.Task
-import com.alexey.targets2.domain.repository.TaskRepository
+import com.alexey.targets2.domain.model.Target
+import com.alexey.targets2.domain.repository.TargetRepository
 import com.alexey.targets2.domain.usecase.base.UnitUseCase
 import javax.inject.Inject
 
@@ -9,8 +9,8 @@ import javax.inject.Inject
  * SOLID PRINCIPLES APPLIED:
  * 
  * 1. SINGLE RESPONSIBILITY PRINCIPLE (SRP):
- *    - This use case has only one responsibility: updating an existing task
- *    - Handles the business logic of task modification without mixing concerns
+ *    - This use case has only one responsibility: updating an existing Target
+ *    - Handles the business logic of Target modification without mixing concerns
  *    - Clear, focused purpose
  * 
  * 2. OPEN/CLOSED PRINCIPLE (OCP):
@@ -19,20 +19,20 @@ import javax.inject.Inject
  *    - New update logic can be added without breaking existing usage
  * 
  * 3. DEPENDENCY INVERSION PRINCIPLE (DIP):
- *    - Depends on TaskRepository abstraction, not concrete implementation
+ *    - Depends on TargetRepository abstraction, not concrete implementation
  *    - Business logic is independent of data source implementation
  *    - Enables testing with mock repositories
  * 
  * 4. LISKOV SUBSTITUTION PRINCIPLE (LSP):
- *    - Can be substituted for UnitUseCase<Task> or UseCase<Task, Unit>
+ *    - Can be substituted for UnitUseCase<Target> or UseCase<Target, Unit>
  *    - Maintains contract compatibility with parent interfaces
  *    - Provides type safety for operations without return values
  */
-class UpdateTaskUseCase @Inject constructor(
-    private val repository: TaskRepository
-) : UnitUseCase<Task> {
+class UpdateTargetUseCase @Inject constructor(
+    private val repository: TargetRepository
+) : UnitUseCase<Target> {
     
-    override suspend operator fun invoke(parameters: Task) {
-        repository.updateTask(parameters)
+    override suspend operator fun invoke(parameters: Target) {
+        repository.updateTarget(parameters)
     }
 } 

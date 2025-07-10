@@ -5,13 +5,13 @@
     <string name="database_name">targets_database</string>
     <string name="table_targets">targets</string>
     
-    <!-- Task Manager Screen -->
+    <!-- Target Manager Screen -->
     <string name="target_manager_title">Targets Manager</string>
     <string name="toggle_completed_targets">Toggle completed targets</string>
     <string name="add_target">Add target</string>
     <string name="delete_target">Delete target</string>
     
-    <!-- Task Priorities -->
+    <!-- Target Priorities -->
     <string name="priority_low">Low</string>
     <string name="priority_medium">Medium</string>
     <string name="priority_high">High</string>
@@ -31,7 +31,7 @@
     <string name="retry">Retry</string>
     <string name="dismiss">Dismiss</string>
     
-    <!-- Add Task Dialog -->
+    <!-- Add Target Dialog -->
     <string name="add_new_target">Add New Target</string>
     <string name="target_title">Title</string>
     <string name="title_required">Title is required</string>
@@ -39,7 +39,13 @@
     <string name="target_priority">Priority</string>
     <string name="add_target_button">Add Target</string>
     <string name="cancel">Cancel</string>
+
+    <!-- Edit Target Dialog -->
+    <string name="edit_target">Edit target</string>
+    <string name="save_changes">Save changes</string>
     
     <!-- Navigation -->
     <string name="target_list_route">target_list</string>
+    <string name="move_up">Move up</string>
+    <string name="move_down">Move down</string>
 </resources>
