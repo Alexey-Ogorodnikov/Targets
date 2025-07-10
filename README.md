@@ -20,10 +20,10 @@ This project follows all **SOLID principles** with comprehensive documentation i
 ### **3. Liskov Substitution Principle (LSP)**
 - **Repository Implementation**: Can be substituted for interface
 - **Use Case Hierarchy**: UnitUseCase can substitute for UseCase
-- **Interface Composition**: TargetRepository combines TargetReader + TaskWriter
+- **Interface Composition**: TargetRepository combines TargetReader + TargetWriter
 
 ### **4. Interface Segregation Principle (ISP)**
-- **TaskReader/TaskWriter**: Separate interfaces for read/write operations
+- **TargetReader/TargetWriter**: Separate interfaces for read/write operations
 - **Use Case Parameters**: Specific parameter classes for each use case
 - **Focused Dependencies**: Clients only depend on interfaces they use
 
@@ -42,41 +42,42 @@ This project follows the **MVVM (Model-View-ViewModel)** architecture pattern wi
 app/src/main/java/com/alexey/targets2/
 ├── domain/                          # Domain Layer (Core Business Logic)
 │   ├── model/                       # Domain Models (SRP, DIP)
-│   │   └── Task.kt                  # Pure business model
+│   │   └── Target.kt                # Pure business model
 │   ├── repository/                  # Repository Interfaces (ISP, DIP)
-│   │   ├── TaskReader.kt            # Read operations only
-│   │   ├── TaskWriter.kt            # Write operations only
-│   │   └── TaskRepository.kt        # Combined interface (LSP)
+│   │   ├── TargetReader.kt          # Read operations only
+│   │   ├── TargetWriter.kt          # Write operations only
+│   │   └── TargetRepository.kt      # Combined interface (LSP)
 │   ├── usecase/                     # Use Cases (SRP, OCP, DIP)
 │   │   ├── base/                    # Base Interfaces (OCP, DIP)
 │   │   │   └── UseCase.kt           # Extensible use case contracts
-│   │   ├── AddTaskUseCase.kt        # Add task business logic
-│   │   ├── GetAllTasksUseCase.kt    # Get tasks business logic
-│   │   ├── UpdateTaskUseCase.kt     # Update task business logic
-│   │   ├── DeleteTaskUseCase.kt     # Delete task business logic
-│   │   └── ToggleTaskCompletionUseCase.kt # Toggle completion logic
+│   │   ├── AddTargetUseCase.kt      # Add target business logic
+│   │   ├── GetAllTargetsUseCase.kt  # Get targets business logic
+│   │   ├── UpdateTargetUseCase.kt   # Update target business logic
+│   │   ├── DeleteTargetUseCase.kt   # Delete target business logic
+│   │   └── ToggleTargetCompletionUseCase.kt # Toggle completion logic
 │   ├── exception/                   # Domain Exceptions (OCP)
-│   │   └── TaskException.kt         # Domain-specific error handling
+│   │   └── TargetException.kt       # Domain-specific error handling
 │   └── result/                      # Result Types (LSP)
 │       └── Result.kt                # Generic result wrapper
 ├── data/                            # Data Layer (Implementation)
 │   ├── model/                       # Data Models (SRP, DIP)
-│   │   └── TaskEntity.kt            # Database entity with mapping
+│   │   └── TargetEntity.kt          # Database entity with mapping
 │   ├── local/                       # Local Data Sources
-│   │   ├── TaskDao.kt               # Room DAO
-│   │   ├── AppDatabase.kt           # Room database
+│   │   ├── TargetDao.kt             # Room DAO
+│   │   ├── AppDatabase.kt           # Room database with migrations
 │   │   └── Converters.kt            # Type converters
 │   └── repository/                  # Repository Implementations (LSP)
-│       └── TaskRepositoryImpl.kt    # Implements domain interfaces
+│       └── TargetRepositoryImpl.kt  # Implements domain interfaces
 ├── presentation/                    # Presentation Layer
 │   ├── viewmodel/                   # ViewModels (SRP, DIP)
-│   │   └── TaskViewModel.kt         # UI state management
+│   │   └── TargetViewModel.kt       # UI state management
 │   ├── screen/                      # UI Screens
-│   │   └── TaskListScreen.kt        # Main task list screen
+│   │   └── TargetListScreen.kt      # Main target list screen
 │   ├── component/                   # UI Components
-│   │   └── AddTaskDialog.kt         # Add task dialog
+│   │   ├── AddTargetDialog.kt       # Add target dialog
+│   │   └── EditTargetDialog.kt      # Edit target dialog
 │   ├── state/                       # UI State (SRP)
-│   │   └── TaskUiState.kt           # UI state models
+│   │   └── TargetUiState.kt         # UI state models
 │   └── navigation/                  # Navigation
 │       └── AppNavigation.kt         # Screen navigation
 ├── di/                             # Dependency Injection (DIP)
@@ -92,19 +93,21 @@ app/src/main/java/com/alexey/targets2/
 - **MVVM Architecture** - Clean separation of concerns
 - **SOLID Principles** - Object-oriented design principles
 - **Hilt** - Dependency injection
-- **Room Database** - Local data persistence
+- **Room Database** - Local data persistence with migrations
 - **Kotlin Coroutines & Flow** - Asynchronous programming
 - **Navigation Compose** - Screen navigation
 - **Material Design 3** - Modern UI components
 
 ## 📱 **Features**
 
-- ✅ **Task Management**: Create, read, update, and delete targets
+- ✅ **Target Management**: Create, read, update, and delete targets
 - ✅ **Priority Levels**: Low, Medium, High priority targets
-- ✅ **Task Completion**: Mark targets as completed/incomplete
+- ✅ **Target Completion**: Mark targets as completed/incomplete
+- ✅ **Manual Reordering**: Reorder targets using up/down arrow buttons
 - ✅ **Filtering**: Toggle between active and completed targets
 - ✅ **Modern UI**: Material Design 3 with Jetpack Compose
 - ✅ **Offline Support**: Local database with Room
+- ✅ **Database Migrations**: Automatic schema updates preserving data
 - ✅ **Clean Architecture**: MVVM with proper separation of concerns
 - ✅ **SOLID Principles**: All five principles properly implemented
 - ✅ **Internationalization**: String resources for easy localization
@@ -135,6 +138,7 @@ app/src/main/java/com/alexey/targets2/
 
 ### **Data Layer** (Implementation)
 - **Room Database**: Local SQLite database with Room ORM
+- **Database Migrations**: Automatic schema updates (v1→v2: add order, v2→v3: rename tasks→targets)
 - **Repository Implementation**: Implements domain contracts (LSP)
 - **Data Models**: Database entities with mapping to domain models (SRP)
 - **Type Converters**: Database type conversions
@@ -144,6 +148,7 @@ app/src/main/java/com/alexey/targets2/
 - **Compose UI**: Declarative UI components
 - **State Management**: Reactive state with StateFlow
 - **Navigation**: Type-safe navigation with Compose Navigation
+- **Manual Reordering**: Arrow buttons for target reordering
 
 ### **Dependency Injection**
 - **Hilt Modules**: Provide dependencies (DIP)
